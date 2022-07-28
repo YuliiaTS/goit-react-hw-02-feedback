@@ -1,3 +1,5 @@
+import Section from './Section/Section'
+import FeedbackOptions from './FeedbackOptions/FeedbackOptions'
 import Statistics from './Statistics/Statistics';
 import React, { Component } from 'react';
 import style from '../components/App.module.css';
@@ -9,23 +11,23 @@ class App extends Component {
     bad: 0,
   };
 
-  handelIncrement = () => {
+  handelIncrement = (keyName) => {
     this.setState(prevState => ({
-      good: prevState.good + 1,
+      [keyName]: prevState[keyName] + 1,
     }));
   };
 
-  handelIncrement2 = () => {
-    this.setState(prevState => ({
-      neutral: prevState.neutral + 1,
-    }));
-  };
+  // handelIncrement2 = () => {
+  //   this.setState(prevState => ({
+  //     neutral: prevState.neutral + 1,
+  //   }));
+  // };
 
-  handelIncrement3 = () => {
-    this.setState(prevState => ({
-      bad: prevState.bad + 1,
-    }));
-  };
+  // handelIncrement3 = () => {
+  //   this.setState(prevState => ({
+  //     bad: prevState.bad + 1,
+  //   }));
+  // };
 
   countTotalFeedback = () => {
     const { good, bad, neutral } = this.state;
@@ -43,29 +45,22 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     const { good, neutral, bad } = this.state;
     return (
       <div className={style.main}>
-        <h2>Please leave feedback</h2>
-        <div style={{ display: 'inline-flex' }}>
-          <button type="button" name="good" onClick={this.handelIncrement}>
-            Good
-          </button>
-          <button type="button" name="neutral" onClick={this.handelIncrement2}>
-            Neutral
-          </button>
-          <button type="button" name="bad" onClick={this.handelIncrement3}>
-            Bad
-          </button>
-        </div>
-        <Statistics
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          total={this.countTotalFeedback()}
-          positivePercentage={this.countPositiveFeedbackPercentage()}
-        />
+        <Section title="Please leave feedback">
+        <FeedbackOptions options={Object.keys(this.state)} onLeaveFeedback={this.handelIncrement}/>
+        </Section>
+        <Section title="Statistics">
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={this.countTotalFeedback()}
+            positivePercentage={this.countPositiveFeedbackPercentage()}
+          />
+        </Section>
       </div>
     );
   }
