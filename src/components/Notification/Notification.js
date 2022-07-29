@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 export default function Notification({message}) {
     return (
-        <p style={{ color: 'red', fontWeight: '500' }}>{message}</p>
+        <p style={{ color: 'rosybrown', fontWeight: '700' }}>{message}</p>
     )
 };
 

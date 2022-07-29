@@ -18,18 +18,6 @@ class App extends Component {
     }));
   };
 
-  // handelIncrement2 = () => {
-  //   this.setState(prevState => ({
-  //     neutral: prevState.neutral + 1,
-  //   }));
-  // };
-
-  // handelIncrement3 = () => {
-  //   this.setState(prevState => ({
-  //     bad: prevState.bad + 1,
-  //   }));
-  // };
-
   countTotalFeedback = () => {
     const { good, bad, neutral } = this.state;
     return good + neutral + bad;
@@ -46,7 +34,6 @@ class App extends Component {
   };
 
   render() {
-    // console.log(this.state);
     const { good, neutral, bad } = this.state;
     return (
       <div className={style.main}>
